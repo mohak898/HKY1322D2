@@ -19,6 +19,7 @@
 
     /* Spacing & Layout */
     --container-width: 1200px;
+    --container-padding: 20px;
     --header-height: 80px;
 }
 
@@ -36,6 +37,8 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     /* Prevent horizontal scroll */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -66,11 +69,11 @@ h4 {
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: clamp(2rem, 5vw, 3rem);
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     text-align: center;
     margin-bottom: 2rem;
     position: relative;
@@ -168,12 +171,12 @@ h2::after {
     justify-content: center;
     text-align: center;
     color: var(--white);
-    padding: 0 20px;
+    padding: 0 var(--container-padding);
 }
 
 .hero-content h1 {
     color: var(--accent-yellow);
-    font-size: 3.5rem;
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -203,7 +206,7 @@ h2::after {
 .container {
     max-width: var(--container-width);
     margin: 4rem auto;
-    padding: 0 20px;
+    padding: 0 var(--container-padding);
 }
 
 .section-bg {
@@ -214,7 +217,8 @@ h2::after {
 /* Grid Layouts */
 .grid-3 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Improved breakpoint for smaller devices */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
 }
 
@@ -308,17 +312,26 @@ h2::after {
 }
 
 /* --- Mobile Responsiveness --- */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2.2rem;
+@media (max-width: 900px) {
+
+    /* Tablet adjustments */
+    :root {
+        --header-height: 70px;
     }
 
+    .hero {
+        height: 60vh;
+    }
+}
+
+@media (max-width: 768px) {
     .mobile-toggle {
         display: flex;
     }
 
     .nav-links {
-        position: absolute;
+        position: fixed;
+        /* Changed to fixed for better mobile handling */
         top: var(--header-height);
         left: 0;
         width: 100%;
@@ -329,10 +342,24 @@ h2::after {
         transform: translateY(-150%);
         transition: transform 0.3s ease;
         box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        max-height: calc(100vh - var(--header-height));
+        overflow-y: auto;
     }
 
     .nav-links.active {
         transform: translateY(0);
+    }
+
+    .grid-3 {
+        gap: 1.5rem;
+    }
+
+    .section-bg {
+        padding: 3rem 0;
+    }
+
+    .container {
+        margin: 3rem auto;
     }
 
     /* Photos Slider equivalent for Mobile */
@@ -341,11 +368,53 @@ h2::after {
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         padding-bottom: 20px;
+        -webkit-overflow-scrolling: touch;
+        /* Smooth scrolling on iOS */
     }
 
     .grid-3.mobile-scroll>* {
         min-width: 85%;
         scroll-snap-align: center;
+        margin-right: 1rem;
+    }
+
+    .grid-3.mobile-scroll>*:last-child {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Small mobile adjustments */
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        display: block;
+        /* Stack buttons */
+        width: 100%;
+        margin: 10px 0 0 0 !important;
+        /* Reset margins for stacking */
+        text-align: center;
+    }
+
+    .navbar {
+        padding: 0 15px;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    .logo span {
+        font-size: 1.2rem !important;
+    }
+
+    .logo img {
+        height: 40px !important;
     }
 }
 
