@@ -167,7 +167,7 @@ h2::after {
 /* --- Hero Section --- */
 .hero {
     height: 80vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)), url('assets/home page1.jpeg');
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)), url('assets/home page1.jpeg');
     /* Local asset used */
     background-size: cover;
     background-position: center;
