@@ -116,9 +116,14 @@ h2::after {
 }
 
 .nav-links a {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--text-dark);
+    font-weight: 500;
+    /* Use 500 for a cleaner look with Roboto */
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    color: #33373D;
+    text-transform: uppercase;
+    /* Often looks better for small professional navs, but can remove if undesired */
+    letter-spacing: 0.5px;
     position: relative;
     padding-bottom: 5px;
 }
@@ -338,7 +343,9 @@ h2::after {
         background: var(--white);
         flex-direction: column;
         align-items: center;
-        padding: 2rem 0;
+        padding: 1rem 0;
+        gap: 10px;
+        /* Reduced from default gap to have items closer */
         transform: translateY(-150%);
         transition: transform 0.3s ease;
         box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
