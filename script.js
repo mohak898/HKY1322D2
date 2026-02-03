@@ -93,6 +93,7 @@ function loadFooter() {
                 <p>&copy; ${new Date().getFullYear()} Greenwood School. All Rights Reserved.</p>
                 <p class="hikat-credit">Engineered and maintained by <a href="https://hikat.xyz" target="_blank" style="color: var(--accent-yellow); text-decoration: none; font-weight: bold;">HIKAT</a></p>
             </div>
+            <h1 class="footer-watermark">GREENWOOD</h1>
         </footer>
     `;
 
